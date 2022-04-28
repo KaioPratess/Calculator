@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+.calc {
+  width: 410px;
+  height: 515px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+}
+
+.calc-display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 398px;
+  height: 153px;
+  padding-right: 40px;
+  font-size: 48px;
+}
+
+.pad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 284px;
+}
+
+.pad div {
+  width: 95px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equal  {
+  flex: 1;
+}
+
+.body.light {
+  background: #EFEFEF;
+}
+
+.body.dark {
+  background: #878787;
+}
+
+.dark .pad div:not(.number) {
+  background: #474646;
+  font-size: 18px;
+}
+
+.dark .number {
+  background: #131313;
+  font-size: 24px;
+}
+
+.dark .calc {
+  background-color: #707070;
+  color: white;
+}
+
+.light .pad div:not(.number) {
+  background: #B3B3B3;
+  font-size: 18px;
+}
+
+.light .number {
+  background: #FFFFFF;
+  font-size: 24px;
+}  
+
+.light  .calc{
+  background: #D3D3D3;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .body.dark {
+    background: #878787;
+  }
+
+  .dark .calc {
+    background-color: #707070;
+    color: white;
+  }
+
+  .pad div:not(.number) {
+    background: #474646;
+    font-size: 18px;
+  }
+  
+  .number {
+    background: #131313;
+    font-size: 24px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .body.light {
+    background: #EFEFEF;
+  }
+  
+  .light .calc {
+    background: #D3D3D3;
+    color: black;
+  }
+
+  .pad div:not(.number) {
+    background: #A9A9A9;
+    font-size: 18px;
+  }
+  
+  .number {
+    background: #FFFFFF;
+    font-size: 24px;
+  }  
+}
