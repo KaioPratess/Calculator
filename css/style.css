@@ -39,13 +39,28 @@ h1 {
 
 .calc-display {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: 398px;
   height: 153px;
-  padding-right: 40px;
   font-size: 48px;
+  border: 2px solid red;
 }
+
+.expression-display {
+  border: 2px solid orange;
+  text-align: right;
+  padding: 0 15px;
+  font-size: 20px;
+}
+
+.number-display {
+  border: 2px solid aqua;
+  text-align: right;
+  padding: 0 10px;
+  font-size: 40px;
+  }
+
 
 .pad {
   display: flex;

@@ -1,3 +1,35 @@
+const expressionDisplay = document.querySelector('.expression-display');
+const numberDisplay = document.querySelector('.number-display');
+const numbersPad = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+
+let displayArray = [];
+
+numbersPad.forEach((number) => {
+  number.addEventListener('click', () => {
+    const key = number.getAttribute('data-key');
+    displayArray.push(key);
+    numberDisplay.value = displayArray.join("");
+  })
+});
+
+operators.forEach((operator) => {
+  operator.addEventListener('click', () => {
+    const key = operator.getAttribute('data-key');
+    displayArray.push(key);
+    numberDisplay.value = displayArray.join("");
+  })
+})
+
+
+
+
+
+
+
+
+
+
 function add(a, b) {
   return a + b
 }
