@@ -3,13 +3,21 @@ const numberDisplay = document.querySelector('.number-display');
 const numbersPad = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('.clear');
+const backspaceBtn = document.querySelector('.backspace');
 
 let displayArray = [];
 
 clearBtn.addEventListener('click', () => {
-  displayArray = [0];
+  displayArray = [];
   numberDisplay.value = displayArray.join("");
 })
+
+
+backspaceBtn.addEventListener('click', () => {
+  displayArray.pop();
+  numberDisplay.value = displayArray.join("");
+})
+
 
 
 numbersPad.forEach((number) => {
