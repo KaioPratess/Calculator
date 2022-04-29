@@ -44,21 +44,20 @@ h1 {
   width: 398px;
   height: 153px;
   font-size: 48px;
-  border: 2px solid red;
 }
 
 .expression-display {
-  border: 2px solid orange;
   text-align: right;
   padding: 0 15px;
   font-size: 20px;
+  border: none;
 }
 
 .number-display {
-  border: 2px solid aqua;
   text-align: right;
   padding: 0 10px;
   font-size: 40px;
+  border: none;
   }
 
 
@@ -98,6 +97,7 @@ h1 {
   background: #878787;
 }
 
+
 .dark h1 {
   color: white;
 }
@@ -117,6 +117,14 @@ h1 {
   color: white;
 }
 
+.dark .expression-display {
+  background: #878787;
+}
+
+.dark .number-display {
+  background: #878787;
+}
+
 @media (prefers-color-scheme: dark) {
   .body.dark {
     background: #878787;
@@ -124,6 +132,16 @@ h1 {
 
   .dark .calc {
     background-color: #707070;
+    color: white;
+  }
+
+  .dark .expression-display {
+    background: #707070;
+    color: white;
+  }
+  
+  .dark .number-display {
+    background: #707070;
     color: white;
   }
 
@@ -157,6 +175,14 @@ h1 {
   color: black;
 }
 
+.light .expression-display {
+  background: #D3D3D3;
+}
+
+.light .number-display {
+  background: #D3D3D3;
+}
+
 @media (prefers-color-scheme: light) {
   .body.light {
     background: #EFEFEF;
@@ -166,6 +192,14 @@ h1 {
     background: #D3D3D3;
     color: black;
   }
+
+  .light .expression-display {
+    background: #D3D3D3;
+  }
+  
+  .light .number-display {
+    background: #D3D3D3;
+  }  
 
   .pad div:not(.number) {
     background: #A9A9A9;
