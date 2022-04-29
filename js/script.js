@@ -1,7 +1,7 @@
 // COLOR MODE STYLE
 const body = document.querySelector('.body');
-const darkIcon = document.querySelector('.dark-color-mode');
-const lightIcon = document.querySelector('.light-color-mode');
+const darkIcon = document.querySelector('.dark-color-theme');
+const lightIcon = document.querySelector('.light-color-theme');
 
 lightIcon.addEventListener('click', () => {
   lightIcon.style.display = 'none';
