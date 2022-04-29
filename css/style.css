@@ -1,3 +1,4 @@
+/* GENERAL */
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +10,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  gap: 40px;
 }
 
+/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
@@ -24,6 +27,7 @@ h1 {
   font-size: 48px;
 }
 
+/* CALC */
 .calc {
   width: 410px;
   height: 515px;
@@ -64,12 +68,23 @@ h1 {
   flex: 1;
 }
 
-.body.light {
-  background: #EFEFEF;
+/* COLOR THEME */
+.color-theme {
+  cursor: pointer;
+  padding: 5px;
 }
 
+.dark-color-theme {
+  display: none;
+}
+
+/* dark style */
 .body.dark {
   background: #878787;
+}
+
+.dark h1 {
+  color: white;
 }
 
 .dark .pad div:not(.number) {
@@ -85,21 +100,6 @@ h1 {
 .dark .calc {
   background-color: #707070;
   color: white;
-}
-
-.light .pad div:not(.number) {
-  background: #B3B3B3;
-  font-size: 18px;
-}
-
-.light .number {
-  background: #FFFFFF;
-  font-size: 24px;
-}  
-
-.light  .calc{
-  background: #D3D3D3;
-  color: black;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -122,6 +122,25 @@ h1 {
     font-size: 24px;
   }
 }
+/* light style */
+.body.light {
+  background: #EFEFEF;
+}
+
+.light .pad div:not(.number) {
+  background: #B3B3B3;
+  font-size: 18px;
+}
+
+.light .number {
+  background: #FFFFFF;
+  font-size: 24px;
+}  
+
+.light  .calc{
+  background: #D3D3D3;
+  color: black;
+}
 
 @media (prefers-color-scheme: light) {
   .body.light {
@@ -142,4 +161,9 @@ h1 {
     background: #FFFFFF;
     font-size: 24px;
   }  
+}
+
+/* FOOTER */
+.footer {
+  padding: 30px 0 20px 0;
 }
