@@ -2,8 +2,15 @@ const expressionDisplay = document.querySelector('.expression-display');
 const numberDisplay = document.querySelector('.number-display');
 const numbersPad = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
+const clearBtn = document.querySelector('.clear');
 
 let displayArray = [];
+
+clearBtn.addEventListener('click', () => {
+  displayArray = [0];
+  numberDisplay.value = displayArray.join("");
+})
+
 
 numbersPad.forEach((number) => {
   number.addEventListener('click', () => {
