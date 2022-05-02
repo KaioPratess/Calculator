@@ -27,8 +27,27 @@ numbersPad.forEach((number) => {
     } else {
       return
     }
-  })
+  });
 });
+
+function onKeyDown(event) {
+  numbersPad.forEach((number)=> {
+    const key = number.getAttribute('data-key');
+    if(event.key === key) {
+      displayArray.push(key);
+      numberDisplay.value = displayArray.join("");
+    }
+  });
+  if(event.key === 'Backspace') {
+    backspace()
+  } 
+  else if(event.key === "Enter") {
+    operate()
+  }
+}
+
+window.addEventListener('keydown', onKeyDown);
+
 
 function displayExp(operator) {
   const key = operator.getAttribute('data-key');
@@ -52,7 +71,7 @@ function add(...operands) {
   const calc = operands.reduce((total, operand) => {
     return total += +operand
   },0);
-  numberDisplay.value = calc;
+  numberDisplay.value = Math.round(calc);
   displayArray = [];
 }
 
@@ -60,7 +79,7 @@ function subtract(...operands) {
   const calc = operands.reduce((first, second) => {
     return first - second
   });''
-  numberDisplay.value = calc;
+  numberDisplay.value = Math.round(calc);
   displayArray = [];
 }
 
@@ -68,7 +87,7 @@ function multiply(...operands) {
   const calc = operands.reduce((first, second) => {
     return first * second
   });
-  numberDisplay.value = calc;
+  numberDisplay.value = Math.round(calc);
   displayArray = [];
 }
 
@@ -76,7 +95,7 @@ function divide(...operands) {
   const calc = operands.reduce((first, second) => {
     return first / second
   });
-  numberDisplay.value = calc;
+  numberDisplay.value = Math.round(calc);
   displayArray = [];
 }
 
@@ -195,39 +214,3 @@ darkIcon.addEventListener('click', () => {
   body.classList.add('dark');
   body.classList.remove('light');
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
