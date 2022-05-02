@@ -7,6 +7,7 @@ const backspaceBtn = document.querySelector('.backspace');
 const operateBtn = document.querySelector('.equal');
 const polarityBtn = document.querySelector('.polarity');
 const percentageBtn = document.querySelector('.percentage');
+const exponentiationBtn = document.querySelector('.exponentiation');
 
 let displayArray = [];
 
@@ -99,9 +100,13 @@ function percentage() {
 
 percentageBtn.addEventListener('click', percentage);
 
-function exponentiation(a, b = 2) {
-  return a ** b
+function exponentiation() {
+  const number = displayArray.join("");
+  expressionDisplay.value = `sqr(${number})`;
+  numberDisplay.value = (+number) ** 2;
 }
+
+exponentiationBtn.addEventListener('click', exponentiation)
 
 function operate() {
   expressionDisplay.value += `${displayArray.join("")} =`;
