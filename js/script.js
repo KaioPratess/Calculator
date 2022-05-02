@@ -6,6 +6,7 @@ const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
 const operateBtn = document.querySelector('.equal');
 const polarityBtn = document.querySelector('.polarity');
+const percentageBtn = document.querySelector('.percentage');
 
 let displayArray = [];
 
@@ -59,7 +60,7 @@ function add(...operands) {
 function subtract(...operands) {
   const calc = operands.reduce((first, second) => {
     return first - second
-  });
+  });''
   numberDisplay.value = calc;
   displayArray = [];
 }
@@ -80,15 +81,23 @@ function divide(...operands) {
   displayArray = [];
 }
 
-function percentage(number, percentage) {
-  if(operator === 'multiply' || operator === 'division') {
-    return percentage / 100
-  } 
-  else if(operator === 'add' || operator === 'subtract') {
-    return number * (percentage / 100)
+function percentage() {
+  const expression = expressionDisplay.value;
+  const expToArray = expression.split(" ");
+  const a = expToArray.slice(0,1).join("");
+  const b = displayArray.join("");
+  const operator = expToArray.slice(1, 2).join("");
+  if(operator === 'x' || operator === '÷') {
+    displayArray = [b / 100];
+    numberDisplay.value = displayArray;
   }
-
+  else if(operator === '+' || operator === '-') {
+    displayArray = [a * (b / 100)];
+    numberDisplay.value = displayArray;
+  }
 } 
+
+percentageBtn.addEventListener('click', percentage);
 
 function exponentiation(a, b = 2) {
   return a ** b
@@ -97,9 +106,10 @@ function exponentiation(a, b = 2) {
 function operate() {
   expressionDisplay.value += `${displayArray.join("")} =`;
   const expression = expressionDisplay.value;
+  console.log(expression)
   const expToArray = expression.split(" ");
-  const a = expToArray.slice(0,1);
-  const b = expToArray.slice(2, 3);
+  const a = expToArray.slice(0,1).join("");
+  const b = expToArray.slice(2, 3).join("");
   const operator = expToArray.slice(1, 2).join("");
   switch(operator) {
     case '+':
@@ -113,7 +123,7 @@ function operate() {
       break;
     case '÷':
       return divide(a, b);
-  }
+ }
 }
 
 operateBtn.addEventListener('click', operate);
