@@ -1,6 +1,7 @@
+const body = document.querySelector('.body');
 const expressionDisplay = document.querySelector('.expression-display');
 const numberDisplay = document.querySelector('.number-display');
-const numbersPad = document.querySelectorAll('.number');
+export const numbersPad = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
@@ -37,6 +38,7 @@ function onKeyDown(event) {
       numberDisplay.value = displayArray.join("");
     }
   });
+
   operators.forEach((operator) => {
     const key = operator.getAttribute('data-key');
     if(event.key === key) {
@@ -68,7 +70,8 @@ function onKeyDown(event) {
   }
 }
 
-window.addEventListener('keydown', onKeyDown);
+
+document.addEventListener('keydown', onKeyDown);
 
 
 function displayExp(operator) {
@@ -94,7 +97,7 @@ function add(...operands) {
   const calc = operands.reduce((total, operand) => {
     return total += +operand
   },0);
-  numberDisplay.value = Math.round(calc);
+  numberDisplay.value = calc;
   displayArray = [];
 }
 
@@ -102,7 +105,7 @@ function subtract(...operands) {
   const calc = operands.reduce((first, second) => {
     return first - second
   });''
-  numberDisplay.value = Math.round(calc);
+  numberDisplay.value = calc;
   displayArray = [];
 }
 
@@ -110,7 +113,7 @@ function multiply(...operands) {
   const calc = operands.reduce((first, second) => {
     return first * second
   });
-  numberDisplay.value = Math.round(calc);
+  numberDisplay.value = calc;
   displayArray = [];
 }
 
@@ -118,7 +121,7 @@ function divide(...operands) {
   const calc = operands.reduce((first, second) => {
     return first / second
   });
-  numberDisplay.value = Math.round(calc);
+  numberDisplay.value = calc;
   displayArray = [];
 }
 
@@ -221,7 +224,6 @@ function addDot() {
 comma.addEventListener('click', addDot)
 
 // COLOR MODE STYLE
-const body = document.querySelector('.body');
 const darkIcon = document.querySelector('.dark-color-theme');
 const lightIcon = document.querySelector('.light-color-theme');
 
