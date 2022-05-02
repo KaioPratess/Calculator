@@ -32,8 +32,13 @@ numbersPad.forEach((number) => {
 
 function displayExp(operator) {
   const key = operator.getAttribute('data-key');
-  expressionDisplay.value = `${numberDisplay.value} ${key} `;
-  displayArray = [];
+  if(expressionDisplay.value === '') {
+    expressionDisplay.value = `${numberDisplay.value} ${key} `;
+    displayArray = [];
+  } else {
+    operate()
+    expressionDisplay.value = `${numberDisplay.value} ${key} `;
+  }
 }
 
 operators.forEach((operator) => {
