@@ -95,6 +95,7 @@ h1 {
 /* dark style */
 .body.dark {
   background: #878787;
+  color: white;
 }
 
 
@@ -128,6 +129,7 @@ h1 {
 @media (prefers-color-scheme: dark) {
   .body.dark {
     background: #878787;
+    color: white;
   }
 
   .dark .calc {
@@ -186,6 +188,7 @@ h1 {
 @media (prefers-color-scheme: light) {
   .body.light {
     background: #EFEFEF;
+    color: black;
   }
   
   .light .calc {

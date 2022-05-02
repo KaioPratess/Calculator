@@ -4,32 +4,10 @@ const numbersPad = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
-const operate = document.querySelector('.equal');
+const operateBtn = document.querySelector('.equal');
+const polarityBtn = document.querySelector('.polarity');
 
-let dotCounter = 0;
 let displayArray = [];
-let fromIndex = 1;
-let toIndex = 0;
-
-function clearDisplay() {
-  displayArray = [];
-  expressionDisplay.value = '';
-  numberDisplay.value = 0;
-  dotCounter = 0;
-}
-
-clearBtn.addEventListener('click', clearDisplay)
-
-function backspace() {
-  displayArray.pop();
-  dotCounter = displayArray.length; 
-    numberDisplay.value = displayArray.join("");
-    if(displayArray.length < 1) {
-      numberDisplay.value = 0;
-    }
-}
-
-backspaceBtn.addEventListener('click', backspace)
 
 function moveArrayValues(array, from, to){
   // remove value form array and store it in a variable
@@ -37,6 +15,9 @@ function moveArrayValues(array, from, to){
   // add removed value to another array position
   array.splice(to, 0, value);
 }
+
+
+// DISPLAY NUMBERS
 
 function displayNumber(number) {
   const key = number.getAttribute('data-key');
@@ -54,37 +35,20 @@ numbersPad.forEach((number) => {
   })
 });
 
+function displayExp(operator) {
+  const key = operator.getAttribute('data-key');
+  expressionDisplay.value = `${numberDisplay.value} ${key} `;
+  displayArray = [];
+}
 
 operators.forEach((operator) => {
-  operator.addEventListener('click', () => {
-    const key = operator.getAttribute('data-key');
-    expressionDisplay.value = `${displayArray.join("")} ${key} `;
-    displayArray = [];
-    dotCounter = 0;
+  operator.addEventListener('click', function () {
+    displayExp(this);
   })
 })
 
-operate.addEventListener('click', () => {
-  expressionDisplay.value += `${displayArray.join("")} =`;
-  const expression = expressionDisplay.value;
-  const operands = expression.replace(/[+\-÷x]/g, ",").replace(/[= ]/g, "").split(",");
-  const operator = expression.match(/[+\-÷x]/g).join("");
-  switch(operator) {
-    case '+':
-      return add(operands);
-      break;
-    case '-':
-      return subtract(operands);
-      break;
-    case 'x':
-      return multiply(operands);
-      break;
-    case '÷':
-      return divide(operands);
-  }
-})
-
-function add(operands) {
+// CALCULATIONS
+function add(...operands) {
   const calc = operands.reduce((total, operand) => {
     return total += +operand
   },0);
@@ -92,7 +56,7 @@ function add(operands) {
   displayArray = [];
 }
 
-function subtract(operands) {
+function subtract(...operands) {
   const calc = operands.reduce((first, second) => {
     return first - second
   });
@@ -100,7 +64,7 @@ function subtract(operands) {
   displayArray = [];
 }
 
-function multiply(operands) {
+function multiply(...operands) {
   const calc = operands.reduce((first, second) => {
     return first * second
   });
@@ -108,7 +72,7 @@ function multiply(operands) {
   displayArray = [];
 }
 
-function divide(operands) {
+function divide(...operands) {
   const calc = operands.reduce((first, second) => {
     return first / second
   });
@@ -130,33 +94,61 @@ function exponentiation(a, b = 2) {
   return a ** b
 }
 
+function operate() {
+  expressionDisplay.value += `${displayArray.join("")} =`;
+  const expression = expressionDisplay.value;
+  const expToArray = expression.split(" ");
+  const a = expToArray.slice(0,1);
+  const b = expToArray.slice(2, 3);
+  const operator = expToArray.slice(1, 2).join("");
+  switch(operator) {
+    case '+':
+      return add(a, b);
+      break;
+    case '-':
+      return subtract(a, b);
+      break;
+    case 'x':
+      return multiply(a, b);
+      break;
+    case '÷':
+      return divide(a, b);
+  }
+}
 
+operateBtn.addEventListener('click', operate);
 
+// CLEAR
+function clearDisplay() {
+  displayArray = [];
+  expressionDisplay.value = '';
+  numberDisplay.value = 0;
+}
 
+clearBtn.addEventListener('click', clearDisplay);
 
+// BACKSPACE
+function backspace() {
+  displayArray.pop();
+    numberDisplay.value = displayArray.join("");
+    if(displayArray.length < 1) {
+      numberDisplay.value = 0;
+    }
+}
 
+backspaceBtn.addEventListener('click', backspace);
 
+// CHANGE POLARITY
+function changePolarity() {
+  if(displayArray.includes('-')) {
+    displayArray.shift('-');
+  } else {
+    displayArray.unshift('-');
+  }
+  numberDisplay.value = displayArray.join("");
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+polarityBtn.addEventListener('click', changePolarity);
 
 
 // COLOR MODE STYLE
