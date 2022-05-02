@@ -162,8 +162,12 @@ function changePolarity() {
 polarityBtn.addEventListener('click', changePolarity);
 
 function addDot() {
-  displayArray.push('.');
-  numberDisplay.value = displayArray.join("");
+  if(displayArray.includes('.')) {
+    return
+  } else {
+    displayArray.push('.');
+    numberDisplay.value = displayArray.join("");
+  }
 }
 
 comma.addEventListener('click', addDot)
