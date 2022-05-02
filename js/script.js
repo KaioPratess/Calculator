@@ -1,7 +1,7 @@
 const body = document.querySelector('.body');
 const expressionDisplay = document.querySelector('.expression-display');
 const numberDisplay = document.querySelector('.number-display');
-export const numbersPad = document.querySelectorAll('.number');
+const numbersPad = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('.clear');
 const backspaceBtn = document.querySelector('.backspace');
