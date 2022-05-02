@@ -22,10 +22,9 @@ function displayNumber(number) {
 
 numbersPad.forEach((number) => {
   number.addEventListener('click', function() {
-    if(displayArray.length < 18) {
-      displayNumber(this)
-    } else {
-      return
+    displayNumber(this)
+    if(displayArray.length > 15) {
+      displayArray.pop()
     }
   });
 });
@@ -38,11 +37,32 @@ function onKeyDown(event) {
       numberDisplay.value = displayArray.join("");
     }
   });
-  if(event.key === 'Backspace') {
-    backspace()
-  } 
-  else if(event.key === "Enter") {
-    operate()
+  operators.forEach((operator) => {
+    const key = operator.getAttribute('data-key');
+    if(event.key === key) {
+      if(expressionDisplay.value === '') {
+        expressionDisplay.value = `${numberDisplay.value} ${key} `;
+        displayArray = [];
+      } else {
+        operate()
+        expressionDisplay.value = `${numberDisplay.value} ${key} `;
+        displayArray = [];
+      }
+    }
+  })
+  if(displayArray.length > 15) {
+    displayArray.pop()
+  }
+  switch(event.key) {
+    case 'Backspace':
+      backspace()
+      break;
+    case 'Enter':
+      operate()
+      break;
+    case '.':
+      addDot()
+      break;
   }
 }
 
@@ -56,6 +76,7 @@ function displayExp(operator) {
     displayArray = [];
   } else {
     operate()
+    displayArray = [];
     expressionDisplay.value = `${numberDisplay.value} ${key} `;
   }
 }
@@ -106,11 +127,11 @@ function percentage() {
   const b = displayArray.join("");
   const operator = expToArray.slice(1, 2).join("");
   if(operator === 'x' || operator === '÷') {
-    displayArray = [b / 100];
+    displayArray = [(b / 100).toFixed(2)];
     numberDisplay.value = displayArray;
   }
   else if(operator === '+' || operator === '-') {
-    displayArray = [a * (b / 100)];
+    displayArray = [(a * (b / 100)).toFixed(2)];
     numberDisplay.value = displayArray;
   }
 } 
@@ -121,33 +142,34 @@ function exponentiation() {
   const number = displayArray.join("");
   expressionDisplay.value = `sqr(${number})`;
   numberDisplay.value = (+number) ** 2;
+  displayArray = [];
 }
 
 exponentiationBtn.addEventListener('click', exponentiation)
 
 function operate() {
-  expressionDisplay.value += `${displayArray.join("")} =`;
-  const expression = expressionDisplay.value;
-  const expToArray = expression.split(" ");
-  const a = expToArray.slice(0,1).join("");
-  const b = expToArray.slice(2, 3).join("");
-  const operator = expToArray.slice(1, 2).join("");
-  if(operator.split("").length < 1) {
-    expressionDisplay.value = '';
-  } else {
-    switch(operator) {
-      case '+':
-        return add(a, b);
-        break;
-      case '-':
-        return subtract(a, b);
-        break;
-      case 'x':
-        return multiply(a, b);
-        break;
-      case '÷':
-        return divide(a, b);
-   }
+  const expression = expressionDisplay.value.split(" ");
+  if(expression[2] === "") {
+    expressionDisplay.value += `${displayArray.join("")}`;
+    const compExpression = expressionDisplay.value;
+    const expToArray = compExpression.split(" ");
+    console.log(expToArray)
+    const a = expToArray.slice(0,1).join("");
+    const b = expToArray.slice(2, 3).join("");
+    const operator = expToArray.slice(1, 2).join("");
+      switch(operator) {
+        case '+':
+          return add(a, b);
+          break;
+        case '-':
+          return subtract(a, b);
+          break;
+        case 'x':
+          return multiply(a, b);
+          break;
+        case '÷':
+          return divide(a, b);
+     }
   }
 }
 
