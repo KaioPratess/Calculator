@@ -63,6 +63,8 @@ function onKeyDown(event) {
     case '.':
       addDot()
       break;
+    case 'Delete':
+      clearDisplay()
   }
 }
 
