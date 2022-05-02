@@ -8,16 +8,9 @@ const operateBtn = document.querySelector('.equal');
 const polarityBtn = document.querySelector('.polarity');
 const percentageBtn = document.querySelector('.percentage');
 const exponentiationBtn = document.querySelector('.exponentiation');
+const comma = document.querySelector('.dot');
 
 let displayArray = [];
-
-function moveArrayValues(array, from, to){
-  // remove value form array and store it in a variable
-  const value = array.splice(from, 1);
-  // add removed value to another array position
-  array.splice(to, 0, value);
-}
-
 
 // DISPLAY NUMBERS
 
@@ -111,24 +104,27 @@ exponentiationBtn.addEventListener('click', exponentiation)
 function operate() {
   expressionDisplay.value += `${displayArray.join("")} =`;
   const expression = expressionDisplay.value;
-  console.log(expression)
   const expToArray = expression.split(" ");
   const a = expToArray.slice(0,1).join("");
   const b = expToArray.slice(2, 3).join("");
   const operator = expToArray.slice(1, 2).join("");
-  switch(operator) {
-    case '+':
-      return add(a, b);
-      break;
-    case '-':
-      return subtract(a, b);
-      break;
-    case 'x':
-      return multiply(a, b);
-      break;
-    case '÷':
-      return divide(a, b);
- }
+  if(operator.split("").length < 1) {
+    expressionDisplay.value = '';
+  } else {
+    switch(operator) {
+      case '+':
+        return add(a, b);
+        break;
+      case '-':
+        return subtract(a, b);
+        break;
+      case 'x':
+        return multiply(a, b);
+        break;
+      case '÷':
+        return divide(a, b);
+   }
+  }
 }
 
 operateBtn.addEventListener('click', operate);
@@ -165,6 +161,12 @@ function changePolarity() {
 
 polarityBtn.addEventListener('click', changePolarity);
 
+function addDot() {
+  displayArray.push('.');
+  numberDisplay.value = displayArray.join("");
+}
+
+comma.addEventListener('click', addDot)
 
 // COLOR MODE STYLE
 const body = document.querySelector('.body');
