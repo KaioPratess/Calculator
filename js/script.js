@@ -38,7 +38,6 @@ function onKeyDown(event) {
       numberDisplay.value = displayArray.join("");
     }
   });
-
   operators.forEach((operator) => {
     const key = operator.getAttribute('data-key');
     if(event.key === key) {
@@ -52,9 +51,6 @@ function onKeyDown(event) {
       }
     }
   })
-  if(displayArray.length > 15) {
-    displayArray.pop()
-  }
   switch(event.key) {
     case 'Backspace':
       backspace()
@@ -67,6 +63,13 @@ function onKeyDown(event) {
       break;
     case 'Delete':
       clearDisplay()
+      break;
+    case '/':
+      expressionDisplay.value = `${numberDisplay.value} ÷ `;
+      displayArray = [];
+  } 
+  if(displayArray.length > 15) {
+    displayArray.pop()
   }
 }
 
@@ -155,7 +158,7 @@ exponentiationBtn.addEventListener('click', exponentiation)
 function operate() {
   const expression = expressionDisplay.value.split(" ");
   if(expression[2] === "") {
-    expressionDisplay.value += `${displayArray.join("")}`;
+    expressionDisplay.value += `${displayArray.join("")} =`;
     const compExpression = expressionDisplay.value;
     const expToArray = compExpression.split(" ");
     console.log(expToArray)
