@@ -4,7 +4,7 @@
 <p>This is a basic calculator with dark and light color mode</p>
 
 <h2>Skills</h2>
-<h3>JavaScript<h3>
+<h3>JavaScript</h3>
 <ul>
   <li>Variables</li>
   <li>functions</li>
