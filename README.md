@@ -66,12 +66,8 @@ $ gh auth login --web
 #Fork this repository and clone your fork
 $ gh repo fork https://github.com/KaioPratess/calculator.git --clone
 
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start dev
 ```
+After that, open the project using [LiveServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) or similar.
 
 ## Contact
 
